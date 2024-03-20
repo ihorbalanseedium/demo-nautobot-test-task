@@ -1,0 +1,25 @@
+parser: '@typescript-eslint/parser'
+parserOptions:
+  sourceType: 'module'
+  project: 'tsconfig.json'
+plugins:
+  - '@typescript-eslint'
+  - '@typescript-eslint/eslint-plugin'
+  - 'jest'
+  - 'react'
+extends:
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:@tanstack/eslint-plugin-query/recommended'
+  - './__config__/eslint/base.yaml'
+  - './__config__/eslint/react.yaml'
+  - 'prettier'
+settings:
+  import/resolver: typescript
+  react:
+    version: 18.2.0
+env:
+  jest/globals: true
+  browser: true
+
+
+
