@@ -10,3 +10,9 @@ export const Title = styled(Typography)`
   color: white;
   text-align: left;
 `;
+
+export const ActionWrapper = styled(Box)`
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+`;
