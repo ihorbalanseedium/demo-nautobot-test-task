@@ -6,7 +6,7 @@ export const DataGridStyled = styled(DataGrid)`
 
   .MuiDataGrid-cell {
     background-color: #212121;
-    color: rgb(200, 200, 200);
+    color: #c8c8c8;
     border-color: #808080;
   }
 
