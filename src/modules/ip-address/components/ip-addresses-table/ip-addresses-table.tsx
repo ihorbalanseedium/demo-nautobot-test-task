@@ -1,5 +1,9 @@
-import { GridColDef, GridRowsProp } from '@mui/x-data-grid';
-import { useMemo } from 'react';
+import {
+  GridColDef,
+  GridPaginationModel,
+  GridRowsProp,
+} from '@mui/x-data-grid';
+import { useEffect, useMemo, useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { useIpAddresses } from 'modules/ip-address/hooks';
@@ -11,11 +15,18 @@ import {
 } from './ip-address-table.styled';
 
 export const IPAddressesTable = () => {
-  const { data } = useIpAddresses();
+  const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
+    page: 0,
+    pageSize: 100,
+  });
+
+  const { data, isLoading, fetchNextPage } = useIpAddresses({
+    limit: paginationModel.pageSize,
+  });
 
   const rows: GridRowsProp = useMemo(() => {
     return (
-      data?.results.map((ipAddress) => {
+      data?.pages[paginationModel.page]?.results.map((ipAddress) => {
         return {
           id: ipAddress.id,
           checkbox: ipAddress.id,
@@ -31,7 +42,17 @@ export const IPAddressesTable = () => {
         };
       }) ?? []
     );
-  }, [data]);
+  }, [data, paginationModel.page]);
+
+  const numberOfPages = useMemo(() => {
+    return data?.pages.length ?? 0;
+  }, [data?.pages]);
+
+  useEffect(() => {
+    if (numberOfPages === paginationModel.page + 1) {
+      fetchNextPage();
+    }
+  }, [numberOfPages, paginationModel.page]);
 
   const columns: GridColDef[] = [
     {
@@ -166,7 +187,15 @@ export const IPAddressesTable = () => {
 
   return (
     <div style={{ width: '100%' }}>
-      <DataGridStyled rows={rows} columns={columns} rowSelection={false} />
+      <DataGridStyled
+        rows={rows}
+        loading={isLoading}
+        rowCount={data?.pages[0]?.count || 0}
+        onPaginationModelChange={setPaginationModel}
+        columns={columns}
+        rowSelection={false}
+        paginationMode={'server'}
+      />
     </div>
   );
 };

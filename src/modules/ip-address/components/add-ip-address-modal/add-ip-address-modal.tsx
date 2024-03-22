@@ -62,6 +62,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                   render={({ field }) => (
                     <TextInputStyled
                       fullWidth
+                      placeholder='None'
                       error={!!errors.address?.message}
                       {...field}
                     />
@@ -80,9 +81,9 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                   render={({ field }) => (
                     <AutocompleteStyled
                       options={[
-                        'Test option 1',
-                        'Test option 2',
-                        'Test option 3',
+                        'Cleanup Namespace (1)',
+                        'Cleanup Namespace Nautobot Baseball Stadiums (1)',
+                        'Global',
                       ]}
                       onChange={(_, changeValue) => {
                         field.onChange(changeValue);
@@ -100,6 +101,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                       )}
                       renderInput={(params) => (
                         <TextInputStyled
+                          placeholder='---------'
                           error={!!errors.namespace?.message}
                           {...params}
                         />
@@ -120,7 +122,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                   render={({ field }) => (
                     <SelectStyled
                       fullWidth
-                      defaultValue=''
+                      defaultValue='host'
                       error={!!errors.namespace?.message}
                       MenuProps={{
                         PaperProps: {
@@ -133,8 +135,9 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                       }}
                       onChange={field.onChange}
                     >
-                      <MenuItemStyled value='type1'>Type 1</MenuItemStyled>
-                      <MenuItemStyled value='type2'>Type 2</MenuItemStyled>
+                      <MenuItemStyled value='dhcp'>DHCP</MenuItemStyled>
+                      <MenuItemStyled value='host'>Host</MenuItemStyled>
+                      <MenuItemStyled value='slacc'>SLACC</MenuItemStyled>
                     </SelectStyled>
                   )}
                 />
@@ -153,11 +156,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                       onChange={(_, changeValue) => {
                         field.onChange(changeValue);
                       }}
-                      options={[
-                        'Test option 1',
-                        'Test option 2',
-                        'Test option 3',
-                      ]}
+                      options={['Active', 'Deprecated', 'NULL', 'Reserved']}
                       PopperComponent={StyledPopper}
                       renderOption={(props, option) => (
                         <li {...props}>
@@ -168,6 +167,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                       )}
                       renderInput={(params) => (
                         <TextInputStyled
+                          placeholder='---------'
                           error={!!errors.status?.message}
                           {...params}
                         />
@@ -191,9 +191,14 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                         field.onChange(changeValue);
                       }}
                       options={[
-                        'Test option 1',
-                        'Test option 2',
-                        'Test option 3',
+                        'Anycat',
+                        'CARP',
+                        'GLBP',
+                        'HSRP',
+                        'Loopback',
+                        'Secondary',
+                        'ViP',
+                        'VRRP',
                       ]}
                       PopperComponent={StyledPopper}
                       renderOption={(props, option) => (
@@ -205,6 +210,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                       )}
                       renderInput={(params) => (
                         <TextInputStyled
+                          placeholder='---------'
                           error={!!errors.role?.message}
                           {...params}
                         />
@@ -226,6 +232,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                   render={({ field }) => (
                     <TextInputStyled
                       fullWidth
+                      placeholder='DNS Name'
                       error={!!errors.dns?.message}
                       {...field}
                     />
@@ -245,6 +252,7 @@ export const AddIpAddressModal: FC<AddIpAddressModalProps> = ({
                   render={({ field }) => (
                     <TextInputStyled
                       fullWidth
+                      placeholder='Description'
                       error={!!errors.description?.message}
                       {...field}
                     />

@@ -10,9 +10,9 @@ export const useCreateIpLocation = () => {
   return useMutation({
     mutationKey: [CREATE_IP_ADDRESS_QUERY_KEY],
     mutationFn: async (_: CreateIpAddressForm) => {
-      // const video = await axios.post<IPAddress>('/videos', data);
+      // const ipAddress = await axios.post<IPAddress>('/videos', data);
       //
-      // return video.data;
+      // return ipAddress.data;
 
       return new Promise((resolve) => {
         setTimeout(() => {
