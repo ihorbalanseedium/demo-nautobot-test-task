@@ -3,7 +3,7 @@ import {
   GridPaginationModel,
   GridRowsProp,
 } from '@mui/x-data-grid';
-import { useEffect, useMemo, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { useIpAddresses } from 'modules/ip-address/hooks';
@@ -13,8 +13,9 @@ import {
   LinkStyled,
   StatusBadge,
 } from './ip-address-table.styled';
+import { IpAddressTableProps } from './ip-address-table.interface';
 
-export const IPAddressesTable = () => {
+export const IPAddressesTable: FC<IpAddressTableProps> = ({ q }) => {
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
     page: 0,
     pageSize: 100,
@@ -22,6 +23,7 @@ export const IPAddressesTable = () => {
 
   const { data, isLoading, fetchNextPage } = useIpAddresses({
     limit: paginationModel.pageSize,
+    q,
   });
 
   const rows: GridRowsProp = useMemo(() => {

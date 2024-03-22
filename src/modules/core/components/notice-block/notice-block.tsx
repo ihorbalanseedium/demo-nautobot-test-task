@@ -7,7 +7,8 @@ export const NoticeBlock = () => {
       <Alert icon={<ErrorOutlineIcon fontSize='inherit' />} severity='warning'>
         <Typography variant='body1' component='p'>
           For this task I didn&apos;t configured routing, so there is only one
-          page.
+          page. For some of the table elements I used simple selecting as from
+          the data it was not clear what should be displayed in the table.
         </Typography>
       </Alert>
       <Alert icon={<ErrorOutlineIcon fontSize='inherit' />} severity='warning'>
