@@ -27,3 +27,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+## Backend Issues
+
+If you have issues connecting to the backend you can use next repository as proxy
+https://github.com/ihorbalanseedium/demo-nautobot-test-task-proxy
